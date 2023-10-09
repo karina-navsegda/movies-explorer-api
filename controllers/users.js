@@ -22,7 +22,11 @@ module.exports.editUser = (req, res, next) => {
       res.status(HTTP_STATUS_OK).send(user);
     })
     .catch((err) => {
-      if (err instanceof mongoose.Error.ValidationError) {
+      if (err.code === 11000) {
+        next(
+          new ConflictError('Этот email адрес уже зарегистрирован'),
+        );
+      } else if (err instanceof mongoose.Error.ValidationError) {
         next(
           new BadRequestError(
             `Неверный формат идентификатора пользователя: ${req.params.userId}`,

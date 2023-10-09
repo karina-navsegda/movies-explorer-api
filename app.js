@@ -7,8 +7,6 @@ const { errors } = require('celebrate');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const cors = require('cors');
-const auth = require('./middlewares/auth');
-const NotFoundError = require('./errors/not-found-err');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000, MOVIESDB_URL = 'mongodb://127.0.0.1:27017/moviesdb' } = process.env;
@@ -34,22 +32,12 @@ mongoose.connect(MOVIESDB_URL, {
 app.use(requestLogger);
 app.use(limiter);
 
+app.use('/', require('./routes/index'));
+
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
-});
-
-app.use('/signup', require('./routes/signup'));
-app.use('/signin', require('./routes/signin'));
-
-app.use(auth);
-
-app.use('/users', require('./routes/users'));
-app.use('/movies', require('./routes/movies'));
-
-app.use('*', (req, res, next) => {
-  next(new NotFoundError('Такой страницы нет :С'));
 });
 
 app.use(errorLogger);
