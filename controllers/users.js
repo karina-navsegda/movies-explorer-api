@@ -11,10 +11,10 @@ const NotFoundError = require('../errors/not-found-err');
 const { SECRET_KEY = 'some-secret-key' } = process.env;
 
 module.exports.editUser = (req, res, next) => {
-  const { name, about } = req.body;
+  const { name, email } = req.body;
   User.findByIdAndUpdate(
     req.user._id,
-    { name, about },
+    { name, email },
     { runValidators: true, new: 'true' },
   )
     .orFail()
