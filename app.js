@@ -8,7 +8,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorHandler = require('./middlewares/error-handler');
-const limiter = require('./utils/constants');
+const { limiter } = require('./utils/constants');
 
 const { PORT = 3000, bitfilmsdb = 'mongodb://127.0.0.1:27017/moviesdb' } = process.env;
 const app = express();
