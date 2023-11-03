@@ -25,6 +25,11 @@ mongoose.connect(bitfilmsdb, {
   useUnifiedTopology: true,
 });
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  next();
+});
+
 app.use(requestLogger);
 
 app.use(limiter);
