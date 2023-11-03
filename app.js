@@ -9,11 +9,12 @@ const cors = require('cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorHandler = require('./middlewares/error-handler');
 const { limiter } = require('./utils/constants');
+const { corsOptions } = require('./middlewares/cors-options');
 
 const { PORT = 4111, bitfilmsdb = 'mongodb://127.0.0.1:27017/moviesdb' } = process.env;
 const app = express();
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use(helmet());
 
