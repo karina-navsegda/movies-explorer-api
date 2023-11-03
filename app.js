@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const { errors } = require('celebrate');
 const helmet = require('helmet');
-// const cors = require('cors');
+const cors = require('cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorHandler = require('./middlewares/error-handler');
 const { limiter } = require('./utils/constants');
@@ -13,7 +13,7 @@ const { limiter } = require('./utils/constants');
 const { PORT = 4111, bitfilmsdb = 'mongodb://127.0.0.1:27017/moviesdb' } = process.env;
 const app = express();
 
-/* app.use(cors()); */
+app.use(cors());
 
 app.use(helmet());
 
