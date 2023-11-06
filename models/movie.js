@@ -46,7 +46,7 @@ const movieSchema = new mongoose.Schema(
     },
     thumbnail: {
       type: String, // имя — это строка
-      required: [true, 'Необходимо заполнить поле'],
+      required: [false, 'Необходимо заполнить поле'],
       validate: {
         validator(v) {
           return linkRegex.test(v);
