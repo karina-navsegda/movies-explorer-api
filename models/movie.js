@@ -1,6 +1,6 @@
 // models/user.js
 const mongoose = require('mongoose');
-const linkRegex = require('../utils/constants');
+const { linkRegex } = require('../utils/constants');
 
 const movieSchema = new mongoose.Schema(
   {
