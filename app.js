@@ -13,11 +13,14 @@ const { limiter } = require('./utils/constants');
 const { PORT = 4111, bitfilmsdb = 'mongodb://127.0.0.1:27017/moviesdb' } = process.env;
 const app = express();
 
-const allowedOrigins = ['https://diplomasavegod.nomoredomainsrocks.ru'];
+const allowedOrigins = [
+  'https://diplomasavegod.nomoredomainsrocks.ru',
+  'http://diplomasavegod.nomoredomainsrocks.ru',
+];
 
 const corsOptions = {
   origin(origin, callback) {
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+    if (allowedOrigins.includes(origin) || !origin) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
