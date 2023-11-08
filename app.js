@@ -16,6 +16,8 @@ const app = express();
 const allowedOrigins = [
   'https://diplomasavegod.nomoredomainsrocks.ru',
   'http://diplomasavegod.nomoredomainsrocks.ru',
+  'http://localhost:3000',
+  'https://localhost:3000',
 ];
 
 const corsOptions = {
